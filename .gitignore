@@ -10,7 +10,7 @@ __pycache__/
 # C extensions
 *.so
 
-.pbix
+*.pbix
 
 # Distribution / packaging
 .Python
