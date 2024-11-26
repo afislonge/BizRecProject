@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="AI powered Business success recommendation system"
+      content="AI Powered Business Recommendation System"
     />
     <meta
       name="keywords"
@@ -21,7 +21,7 @@
     <meta name="author" content="Developed by Group 6" />
 
     <!-- Facebook and Twitter integration -->
-    <meta property="og:title" content="AI powered Business success recommendation system" />
+    <meta property="og:title" content="AI powered Business recommendation system" />
     <meta
       property="og:image"
       itemprop="image primaryImageOfPage"
@@ -37,7 +37,7 @@
     />
     <meta
       property="og:description"
-      content="AI powered Business success recommendation system"
+      content="AI powered Business recommendation system"
     />
     <meta
       name="twitter:title"
@@ -48,7 +48,7 @@
       name="twitter:description"
       property="og:description"
       itemprop="description"
-      content="AI powered Business success recommendation system"
+      content="AI powered Business recommendation system"
     />
     <meta name="twitter:image" content="hero-right.jpg" />
     <meta name="twitter:url" content="" />
@@ -66,6 +66,8 @@
     <link rel="stylesheet" href="/web/css/animate.css" />
     <!-- Icomoon Icon Fonts-->
     <link rel="stylesheet" href="/web/css/icomoon.css" />
+
+    <link rel="stylesheet" href="/web/css/icheck.css" />
     <!-- Bootstrap  -->
     <link rel="stylesheet" href="/web/css/bootstrap.css" />
     <!-- Superfish -->
@@ -93,8 +95,8 @@
               </div>
               <div class="col-md-7 col-sm-7 text-right fh5co-social">
                 <h2>
-                  <strong>AI-powered recommendation business success prediction for
-                    every SMEs</strong >
+                  <strong>AI-Powered Business Recommendation System
+                    </strong >
                 </h1>
               </div>
             </div>
@@ -129,53 +131,63 @@
                 <div class="row">
                   <div class="col-md-3">
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Industry/Category">
+                      <label for="location">Location</label>
+                      <select required id="location" name="location" class="form-control">
+                        <option value="">Select Location</option>
+                      </select>
                     </div>
                   </div>
                   <div class="col-md-3">
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Customer Sentiments">
+                      <label for="cuzine">Cuzine Type</label>
+                      <select required id="cuzine" name="cuzine" class="form-control">
+                        <option value="">Select Cuzine</option>
+                      </select>
                     </div>
                   </div>
                   <div class="col-md-3">
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Business Rating">
+                      <label for="rating">Rating</label>
+                      <select required id="rating" name="rating" class="form-control">
+                        <option value="">Select Rating</option>
+                        <option value="1">1 Star</option>
+                        <option value="2">2 Star</option>
+                        <option value="3">3 Star</option>
+                        <option value="4">4 Star</option>
+                        <option value="5">5 Star</option>
+                      </select>
                     </div>
                   </div>
                   <div class="col-md-3">
-                    <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Is Open">
-                    </div>
-                  </div>                      
-                </div>
-                <div class="row">
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Location">
+                  <div class="form-group">
+                    <label class="control-label">
+                      Facilities
+                      <span class="text-danger field-validation-valid" data-valmsg-for="AboutUs" data-valmsg-replace="true"></span>
+                    </label>
+                    <div class="form-group clearfix">
+                      <div class="icheck-primary d-inline" style="display: inline; padding-right:15px">
+                        <input class="checkaboutus" type="checkbox" id="radioPrimary1" name="chkAboutUs" value="TV/Radio">
+                        <label class="control-label" for="radioPrimary1">
+                          TV/Radio
+                        </label>
+                      </div>
+                      <div class="icheck-primary d-inline" style="display: inline;">
+                        <input class="checkaboutus" type="checkbox" id="radioPrimary2" name="chkAboutUs" value="GEA Website">
+                        <label for="radioPrimary2" class="control-label">
+                          GEA Website
+                        </label>
+                      </div>
                     </div>
                   </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Review Count">
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Amenities & Services">
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Customer Popularity & Tips">
-                    </div>
-                  </div>                      
+                 </div>                                  
                 </div>
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <input type="submit" value="Recommend Business" class="btn btn-primary">
+                      <input type="button" value="Recommend Business" class="btn btn-success">
+                      <input type="button" value="Reset" class="btn btn-danger">
                     </div>
-                  </div>
+                  </div>   
                 </div>
               </form>
             </div>

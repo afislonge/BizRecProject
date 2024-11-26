@@ -1722,4 +1722,8 @@ figure {
   background: url(../images/hourglass.svg) center no-repeat #222222;
 }
 
+.d-inline {
+  display: inline !important;
+}
+
 /*# sourceMappingURL=style.css.map */

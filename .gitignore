@@ -13,6 +13,7 @@ __pycache__/
 *.pbix
 
 # Distribution / packaging
+.vscode/
 .Python
 doc/
 yelp_dataset/
