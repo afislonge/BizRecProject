@@ -168,7 +168,7 @@ figure {
 }
 
 .fh5co-cover {
-  background-image: url(/images/banner.jpg);
+  background-image: url(/web/images/banner.jpg);
 }
 
 .fh5co-cover,
@@ -1719,7 +1719,7 @@ figure {
   width: 100%;
   height: 100%;
   z-index: 9999;
-  background: url(/images/hourglass.svg) center no-repeat #222222;
+  background: url(images/hourglass.svg) center no-repeat #222222;
 }
 
 .d-inline {
