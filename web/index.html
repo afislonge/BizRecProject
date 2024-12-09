@@ -72,6 +72,7 @@
     <link rel="stylesheet" href="css/bootstrap.css" />
     <!-- Superfish -->
     <link rel="stylesheet" href="css/superfish.css" />
+    <link rel="stylesheet" href="css/sweetalert.css" />
 
     <link rel="stylesheet" href="css/style.css" />
 
@@ -278,12 +279,88 @@
 
     <!-- Stellar -->
     <script scr="js/jquery.stellar.min.js"></script>
+    <script scr="js/sweetalert.js"></script>
     <!-- Superfish -->
     <script scr="js/hoverIntent.js"></script>
     <script scr="js/superfish.js"></script>
 
     <!-- Main JS -->
     <script scr="js/main.js"></script>
-    <scrip src="js/app.js"></script>
+    <!-- <scrip src="js/app.js"></script> -->
+    <script>
+      api_url = "localhost/api/";
+
+submit.addEventListener("click", function () {
+  //get value of dropdowm control
+  var rating = document.getElementById("rating");
+  var cuzine = document.getElementById("cuzine");
+  var city = document.getElementById("location");
+
+  var rest_rating = rating.value;
+  var rest_cuzine = cuzine.value;
+  var location = city.value;
+
+  var rating = rating.value;
+  var cuzine = cuzine.value;
+  var location = city.value;
+
+  //check if value is empty
+  if (location == "") {
+    alert("Please select a location");
+    return false;
+  }
+  if (cuzine == "") {
+    alert("Please select a cuzine");
+    return false;
+  }
+  if (rating == "") {
+    alert("Please select a rating");
+    return false;
+  }
+
+  const data = {
+    rating: rating.value,
+    cuzine: cuzine.value,
+    location: location.value,
+  };
+  console.log(data);
+
+  fetch(api_url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Success:", data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+});
+
+function resetform() {
+  //get value of dropdowm control
+  var rating = rating.value;
+  var cuzine = cuzine.value;
+  var location = location.value;
+  //check if value is empty
+  if (rating == "") {
+    alert("Please select a rating");
+    return false;
+  }
+  if (cuzine == "") {
+    alert("Please select a cuzine");
+    return false;
+  }
+  if (location == "") {
+    alert("Please select a location");
+    return false;
+  }
+}
+
+    </script>
   </body>
 </html>

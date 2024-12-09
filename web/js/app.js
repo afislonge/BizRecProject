@@ -1,21 +1,18 @@
 api_url = "localhost/api/";
 
-const rating = document.getElementById("rating");
-const cuzine = document.getElementById("cuzine");
-const location = document.getElementById("location");
-const submit = document.getElementById("submit");
-const reset = document.getElementById("reset");
-
-console.log(api_url)
+console.log(api_url);
 
 submit.addEventListener("click", function () {
-  
   //get value of dropdowm control
-  var rating = rating.value;
-  var cuzine = cuzine.value;
-  var location = location.value;
+  const rating = document.getElementById("rating");
+  const cuzine = document.getElementById("cuzine");
+  const city = document.getElementById("location");
 
-   //check if value is empty
+  var rest_rating = rating.value;
+  var rest_cuzine = cuzine.value;
+  var location = city.value;
+
+  //check if value is empty
   if (location == "") {
     alert("Please select a location");
     return false;
@@ -23,7 +20,7 @@ submit.addEventListener("click", function () {
   if (cuzine == "") {
     alert("Please select a cuzine");
     return false;
-  }  
+  }
   if (rating == "") {
     alert("Please select a rating");
     return false;
@@ -35,7 +32,7 @@ submit.addEventListener("click", function () {
     location: location.value,
   };
   console.log(data);
-  
+
   fetch(api_url, {
     method: "POST",
     body: JSON.stringify(data),
@@ -52,7 +49,7 @@ submit.addEventListener("click", function () {
     });
 });
 
-function resetform {
+function resetform() {
   //get value of dropdowm control
   var rating = rating.value;
   var cuzine = cuzine.value;
@@ -65,11 +62,9 @@ function resetform {
   if (cuzine == "") {
     alert("Please select a cuzine");
     return false;
-  }  
+  }
   if (location == "") {
     alert("Please select a location");
     return false;
   }
-
 }
-
