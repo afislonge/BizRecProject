@@ -1,70 +1,66 @@
-api_url = "localhost/api/";
+$(function () {
+  api_url = "localhost/api/";
 
-console.log(api_url);
+  $("#result").hide();
 
-submit.addEventListener("click", function () {
-  //get value of dropdowm control
-  const rating = document.getElementById("rating");
-  const cuzine = document.getElementById("cuzine");
-  const city = document.getElementById("location");
+  submit.addEventListener("click", function () {
+    //get value of dropdowm control
+    var rating = document.getElementById("rating");
+    var cuzine = document.getElementById("cuzine");
+    var city = document.getElementById("location");
 
-  var rest_rating = rating.value;
-  var rest_cuzine = cuzine.value;
-  var location = city.value;
+    var rest_rating = rating.value;
+    var rest_cuzine = cuzine.value;
+    var location = city.value;
 
-  //check if value is empty
-  if (location == "") {
-    alert("Please select a location");
-    return false;
-  }
-  if (cuzine == "") {
-    alert("Please select a cuzine");
-    return false;
-  }
-  if (rating == "") {
-    alert("Please select a rating");
-    return false;
-  }
+    var rating = rating.value;
+    var cuzine = cuzine.value;
+    var location = city.value;
 
-  const data = {
-    rating: rating.value,
-    cuzine: cuzine.value,
-    location: location.value,
-  };
-  console.log(data);
+    var formErr = false;
 
-  fetch(api_url, {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Success:", data);
+    //check if value is empty
+    if (location == "" || cuzine == "" || rating == "") {
+      formErr = true;
+    }
+
+    if (formErr) {
+      Swal.fire({
+        text: "Please select value for required field(s)",
+        icon: "info",
+      });
+      return false;
+    }
+
+    $(".home").hide();
+    $("#result").show();
+
+    const data = {
+      rating: rating.value,
+      cuzine: cuzine.value,
+      location: location.value,
+    };
+    console.log(data);
+
+    fetch(api_url, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
     })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-});
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  });
 
-function resetform() {
-  //get value of dropdowm control
-  var rating = rating.value;
-  var cuzine = cuzine.value;
-  var location = location.value;
-  //check if value is empty
-  if (rating == "") {
-    alert("Please select a rating");
-    return false;
-  }
-  if (cuzine == "") {
-    alert("Please select a cuzine");
-    return false;
-  }
-  if (location == "") {
-    alert("Please select a location");
-    return false;
-  }
-}
+  reset.addEventListener("click", function () {
+    //get value of dropdowm control
+    $("#result").hide();
+    $(".home").show();
+  });
+});

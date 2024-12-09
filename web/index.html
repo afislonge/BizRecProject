@@ -72,8 +72,8 @@
     <link rel="stylesheet" href="css/bootstrap.css" />
     <!-- Superfish -->
     <link rel="stylesheet" href="css/superfish.css" />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="css/sweetalert.css" />
-
     <link rel="stylesheet" href="css/style.css" />
 
     <!-- Modernizr JS -->
@@ -132,7 +132,7 @@
                 <div class="row">
                   <div class="col-md-3">
                     <div class="form-group">
-                      <label for="location">Location</label>
+                      <label for="location"><span class="text-danger">*</span>Location <span class="text-danger small">(required)</span></label>
                       <select required id="location" name="location" class="form-control">
                         <option value="">Select Location</option>
                         <option value="ontarion">Ontario</option>
@@ -141,7 +141,7 @@
                   </div>
                   <div class="col-md-3">
                     <div class="form-group">
-                      <label for="cuzine">Cuzine Type</label>
+                      <label for="cuzine"><span class="text-danger">*</span>Cuzine Type <span class="text-danger small">(required)</span></label>
                       <select required id="cuzine" name="cuzine" class="form-control">
                         <option value="">Select Cuzine</option>
                         <option value="america">America Cuzine</option>
@@ -150,7 +150,7 @@
                   </div>
                   <div class="col-md-3">
                     <div class="form-group">
-                      <label for="rating">Rating</label>
+                      <label for="rating"><span class="text-danger">*</span>Rating <span class="text-danger small">(required)</span></label>
                       <select required id="rating" name="rating" class="form-control">
                         <option value="">Select Rating</option>
                         <option value="1">1 Star</option>
@@ -184,6 +184,25 @@
                   </div>
                  </div>                                  
                 </div>
+                <div id="result" class="row">
+                  <div class="listing">
+                    <div class="name">Wendy's 80%</div>
+                    <div class="category">Restaurant</div>
+                    <div class="rating">
+                      <span class="stars">★★★★★</span>
+                      <span class="count">(15,000 ratings)</span>
+                    </div>
+                  </div>
+                
+                  <div class="listing">
+                    <div class="name">Starbucks 75%</div>
+                    <div class="category">Restaurant</div>
+                    <div class="rating">
+                      <span class="stars">★★★★☆</span>
+                      <span class="count">(14,000 ratings)</span>
+                    </div>
+                  </div>
+                </div>
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
@@ -194,7 +213,7 @@
                 </div>
               </form>
             </div>
-            <div class="row">
+            <div class="row home">
               <div class="col-md-6 text-center animate-box">
                 <p>
                   <img
@@ -219,7 +238,7 @@
               </div>
             </div>
 
-            <div class="row">
+            <div class="row home">
               <div class="col-md-6 text-justify animate-box">
                 <p>
                   Our machine learning model offers personalized, real-time
@@ -268,99 +287,25 @@
     <!-- END fh5co-wrapper -->
     <!-- jQuery -->
 
-    <script scr="js/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
     <!-- jQuery Easing -->
-    <script scr="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
     <!-- Bootstrap -->
-    <script scr="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <!-- Waypoints -->
-    <script scr="js/jquery.waypoints.min.js"></script>
-    <script scr="js/sticky.js"></script>
-
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/sticky.js"></script>
+    <script src="js/sweetalert.js"></script>
     <!-- Stellar -->
-    <script scr="js/jquery.stellar.min.js"></script>
-    <script scr="js/sweetalert.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js"></script> -->
     <!-- Superfish -->
-    <script scr="js/hoverIntent.js"></script>
-    <script scr="js/superfish.js"></script>
+    <script src="js/hoverIntent.js"></script>
+    <script src="js/superfish.js"></script>
 
     <!-- Main JS -->
-    <script scr="js/main.js"></script>
-    <!-- <scrip src="js/app.js"></script> -->
-    <script>
-      api_url = "localhost/api/";
+    <script src="js/main.js"></script>
 
-submit.addEventListener("click", function () {
-  //get value of dropdowm control
-  var rating = document.getElementById("rating");
-  var cuzine = document.getElementById("cuzine");
-  var city = document.getElementById("location");
-
-  var rest_rating = rating.value;
-  var rest_cuzine = cuzine.value;
-  var location = city.value;
-
-  var rating = rating.value;
-  var cuzine = cuzine.value;
-  var location = city.value;
-
-  //check if value is empty
-  if (location == "") {
-    alert("Please select a location");
-    return false;
-  }
-  if (cuzine == "") {
-    alert("Please select a cuzine");
-    return false;
-  }
-  if (rating == "") {
-    alert("Please select a rating");
-    return false;
-  }
-
-  const data = {
-    rating: rating.value,
-    cuzine: cuzine.value,
-    location: location.value,
-  };
-  console.log(data);
-
-  fetch(api_url, {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Success:", data);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-});
-
-function resetform() {
-  //get value of dropdowm control
-  var rating = rating.value;
-  var cuzine = cuzine.value;
-  var location = location.value;
-  //check if value is empty
-  if (rating == "") {
-    alert("Please select a rating");
-    return false;
-  }
-  if (cuzine == "") {
-    alert("Please select a cuzine");
-    return false;
-  }
-  if (location == "") {
-    alert("Please select a location");
-    return false;
-  }
-}
-
-    </script>
+    <script src="js/app.js"></script>
   </body>
 </html>

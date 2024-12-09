@@ -1727,3 +1727,35 @@ figure {
 }
 
 /*# sourceMappingURL=style.css.map */
+.hide {
+  visibility: hidden;
+}
+
+.listing {
+  margin-bottom: 20px;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.category {
+  font-size: 14px;
+  color: #888;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+}
+
+.stars {
+  font-size: 20px;
+}
+
+.count {
+  margin-left: 10px;
+  font-size: 14px;
+  color: #888;
+}
