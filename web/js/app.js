@@ -86,16 +86,17 @@ $(function () {
     var rating = document.getElementById("rating");
     var cuzine = document.getElementById("cuzine");
     var city = document.getElementById("location");
-    var wifi = document.getElementById("wifi");
-    var parking = document.getElementById("parking");
+    var wifi = document.getElementById("wifi").checked;
+    var parking = document.getElementById("parking").checked;
 
     console.log(wifi);
+    console.log(parking);
 
     var rest_rating = rating.value;
     var rest_cuzine = cuzine.value;
     var location = city.value;
-    var need_wifi = "No";
-    var need_parking = "No";
+    var need_wifi = wifi == true ? "Yes" : "No";
+    var need_parking = parking == true ? "Yes" : "No";
 
     var formErr = false;
 

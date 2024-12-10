@@ -168,7 +168,7 @@ figure {
 }
 
 .fh5co-cover {
-  background-image: url(images/banner.jpg);
+  background-image: url(/web/images/banner.jpg);
 }
 
 .fh5co-cover,
@@ -1728,7 +1728,7 @@ figure {
 
 /*# sourceMappingURL=style.css.map */
 .hide {
-  visibility: hidden;
+  display: none;
 }
 
 .listing {
