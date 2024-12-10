@@ -6,3 +6,6 @@ flask_cors
 uvicorn
 gunicorn
 pyspark
+pymongo[srv]
+google-auth-oauthlib
+google-api-python-client

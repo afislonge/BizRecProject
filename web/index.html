@@ -75,6 +75,9 @@
     <link rel="stylesheet" href="css/superfish.css" />
     <!-- <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="css/sweetalert.css" />
+    <link rel="stylesheet" href="css/ion.rangeSlider.min.css">
+    <link rel="stylesheet" href="css/select2.min.css">
+    <link rel="stylesheet" href="css/select2-bootstrap4.min.css">
     <link rel="stylesheet" href="css/style.css" />
 
     <!-- Modernizr JS -->
@@ -134,7 +137,7 @@
                   <div class="col-md-3">
                     <div class="form-group">
                       <label for="location"><span class="text-danger">*</span>Location <span class="text-danger small">(required)</span></label>
-                      <select required id="location" name="location" class="form-control">
+                      <select required id="location" name="location" class="form-control select2">
                         <option value="">Select Location</option>
                         <option value="ontarion">Ontario</option>
                       </select>
@@ -143,7 +146,7 @@
                   <div class="col-md-3">
                     <div class="form-group">
                       <label for="cuzine"><span class="text-danger">*</span>Cuzine Type <span class="text-danger small">(required)</span></label>
-                      <select required id="cuzine" name="cuzine" class="form-control">
+                      <select required id="cuzine" name="cuzine" class="form-control select2">
                         <option value="">Select Cuzine</option>
                         <option value="america">America Cuzine</option>
                       </select>
@@ -152,18 +155,11 @@
                   <div class="col-md-3">
                     <div class="form-group">
                       <label for="rating"><span class="text-danger">*</span>Rating <span class="text-danger small">(required)</span></label>
-                      <select required id="rating" name="rating" class="form-control">
-                        <option value="">Select Rating</option>
-                        <option value="1">1 Star</option>
-                        <option value="2">2 Star</option>
-                        <option value="3">3 Star</option>
-                        <option value="4">4 Star</option>
-                        <option value="5">5 Star</option>
-                      </select>
+                      <input id="rating" type="text" name="rating" value="">
                     </div>
                   </div>
                   <div class="col-md-3">
-                  <div class="form-group">
+                  <div class="form-group facility">
                     <label class="control-label">
                       Facilities
                       <span class="text-danger field-validation-valid" data-valmsg-for="AboutUs" data-valmsg-replace="true"></span>
@@ -291,6 +287,7 @@
           </div>
         </footer>
       </div>
+      <input id="txtrating" readonly type="hidden" name="txtrating" value="" class="form-control">
       <!-- END fh5co-page -->
     </div>
     <!-- END fh5co-wrapper -->
@@ -311,7 +308,8 @@
     <!-- Superfish -->
     <script src="js/hoverIntent.js"></script>
     <script src="js/superfish.js"></script>
-
+    <script src="js/ion.rangeSlider.min.js"></script>
+    <script src="js/select2.full.min.js"></script>
     <!-- Main JS -->
     <script src="js/main.js"></script>
 

@@ -1014,7 +1014,7 @@ figure {
 }
 
 #fh5co-feature-product {
-  padding: 2em 0 0;
+  padding: 1em 0 0;
 }
 
 #fh5co-feature-product p {
@@ -1731,6 +1731,10 @@ figure {
   visibility: hidden;
 }
 
+.facility {
+  margin-top: 10px;
+}
+
 .inlinepadding {
   display: inline;
   padding-right: 15px;
@@ -1801,4 +1805,36 @@ figure {
   text-align: right;
   font-size: 0.9em;
   color: #555;
+}
+
+.irs--flat .irs-from,
+.irs--flat .irs-to,
+.irs--flat .irs-single {
+  color: white;
+  background-color: #c40f2e;
+}
+
+.irs--flat .irs-min,
+.irs--flat .irs-max {
+  color: #bc0a0a;
+  background-color: #e1e4e9;
+}
+
+.irs--flat .irs-bar {
+  background-color: #1890ff;
+}
+
+.select2-container .select2-selection--single {
+  height: 42px;
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+  padding: 10px 20px;
+}
+
+.select2-container--default
+  .select2-selection--single
+  .select2-selection__rendered {
+  line-height: 25px;
+  font-size: 14px;
 }

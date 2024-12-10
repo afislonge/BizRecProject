@@ -6,7 +6,81 @@ $(function () {
   cuizine_api = api_url + "/cuizine";
   settings_url = api_url + "/settings";
 
+  $(".select2").select2();
+
+  $("#rating").ionRangeSlider({
+    postfix: " Star",
+    min: 1,
+    max: 5,
+    from: 1,
+    onChange: function (obj) {
+      $("#txtrating").val(obj.from);
+    },
+    onStart: function (obj) {
+      $("#txtrating").val(obj.from);
+    },
+  });
+
   $("#result").hide();
+
+  const storedData = getDataFromLocalStorage();
+  const now = new Date().getTime();
+  // Check if stored data is older than 1 hour (adjust as needed)
+  if (!storedData || now - storedData.timestamp > 3600000) {
+    const freshData = await fetchData();
+    if (freshData) {
+      saveDataToLocalStorage({ data: freshData, timestamp: now });
+      updateUI(freshData);
+    } else {
+      // Handle error or no data
+    }
+  } else {
+    updateUI(storedData.data);
+  }
+
+  // Function to update the UI with the given data
+function updateUI(data) {
+  loc_data = data.location;
+        cui_data = data.cuizine;
+        var location = document.getElementById("location");
+        var cuzine = document.getElementById("cuzine");
+
+        //remove all options
+        var opt = document.createElement("option");
+        opt.innerHTML = "Select Location";
+        opt.value = "";
+        location.innerHTML = "";
+        location.appendChild(opt);
+        for (var i = 0; i < loc_data.length; i++) {
+          var opt = document.createElement("option");
+          opt.value = loc_data[i];
+          opt.innerHTML = loc_data[i];
+          location.appendChild(opt);
+        }
+
+        var opt = document.createElement("option");
+        opt.innerHTML = "Select Cuizine";
+        cuzine.innerHTML = "";
+        opt.value = "";
+        cuzine.appendChild(opt);
+        for (var i = 0; i < cui_data.length; i++) {
+          var opt = document.createElement("option");
+          opt.value = cui_data[i];
+          opt.innerHTML = cui_data[i];
+          cuzine.appendChild(opt);
+        }
+}
+
+  async function fetchData() {
+    try {
+      const response = await fetch('https://your-api-endpoint');
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      return null;
+    }
+  }
 
   try {
     //call location api
@@ -84,7 +158,7 @@ $(function () {
 
   submit.addEventListener("click", function () {
     //get value of dropdowm control
-    var rating = document.getElementById("rating");
+    var rating = document.getElementById("txtrating");
     var cuzine = document.getElementById("cuzine");
     var city = document.getElementById("location");
     var wifi = document.getElementById("wifi").checked;
@@ -150,4 +224,15 @@ $(function () {
     $("#result").hide();
     $(".home").show();
   });
+
+  // Function to save data to local storage
+  function saveDataToLocalStorage(data) {
+    localStorage.setItem("appData", JSON.stringify(data));
+  }
+
+  // Function to retrieve data from local storage
+  function getDataFromLocalStorage() {
+    const storedData = localStorage.getItem("appData");
+    return storedData ? JSON.parse(storedData) : null;
+  }
 });
