@@ -21,7 +21,7 @@ data_path = "..\Recommender_System_Newdata.csv"
 
 try:
     spark_session = SparkSession.builder.appName("BizRecApi").getOrCreate()
-    spark_session.sparkContext.setLogLevel("ERROR")
+    # spark_session.sparkContext.setLogLevel("ERROR")
     # model = LinearRegressionModel.load(spark_session, model_path)
 except Exception as e:
     print(f"Error creating SparkSession: {e}")
@@ -35,6 +35,7 @@ def index():
 
 @app.route('/settings', methods=['GET'])
 def settings():
+    spark_session = SparkSession.builder.appName("BizRecApi").getOrCreate()
     df_loc = spark_session.read.csv("data\city.csv", header=True, inferSchema=True) 
     loc_data = df_loc.rdd.flatMap(lambda x: x).collect()
     # loc_data =  ["Ontario", "Alberta", "Chicago"]
@@ -84,6 +85,7 @@ def predict():
     print("")
     print(lat)
     print(long)
+    spark_session = SparkSession.builder.appName("BizRecApi").getOrCreate()
     # Load the CSV file into a DataFrame
     # review_df = spark_session.read.csv(data_path, header=True, inferSchema=True)
     # review_df.show()
