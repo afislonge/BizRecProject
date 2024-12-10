@@ -1,9 +1,10 @@
 $(function () {
-  api_url = "http://127.0.0.1:5000/";
-  predict_api = api_url + "predict";
-  location_api = api_url + "location";
-  cuizine_api = api_url + "cuizine";
-  settings_url = api_url + "settings";
+  // api_url = "http://127.0.0.1:5000/";
+  api_url = "https://bizrecapi.onrender.com";
+  predict_api = api_url + "/predict";
+  location_api = api_url + "/location";
+  cuizine_api = api_url + "/cuizine";
+  settings_url = api_url + "/settings";
 
   $("#result").hide();
 
