@@ -2,4 +2,7 @@ pandas
 numpy
 scikit-learn
 flask
+flask_cors
+uvicorn
+gunicorn
 pyspark

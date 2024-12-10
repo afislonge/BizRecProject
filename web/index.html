@@ -10,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Market Women Fund Application</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://bizrecapp.onrender.com/; connect-src 'self' http://127.0.0.1:5000 https://bizrecapi.onrender.com/">
     <meta
       name="description"
       content="AI Powered Business Recommendation System"
@@ -168,15 +169,15 @@
                       <span class="text-danger field-validation-valid" data-valmsg-for="AboutUs" data-valmsg-replace="true"></span>
                     </label>
                     <div class="form-group clearfix">
-                      <div class="icheck-primary d-inline" style="display: inline; padding-right:15px">
-                        <input class="checkaboutus" type="checkbox" id="radioPrimary1" name="chkfacilities" value="Wifi">
-                        <label class="control-label" for="radioPrimary1">
+                      <div class="icheck-primary d-inline inlinepadding">
+                        <input class="checkaboutus" type="checkbox" id="wifi" name="chkfacilities" value="Wifi">
+                        <label class="control-label" for="wifi">
                           WIFI
                         </label>
                       </div>
-                      <div class="icheck-primary d-inline" style="display: inline;">
-                        <input class="checkaboutus" type="checkbox" id="radioPrimary2" name="chkfacilities" value="parking">
-                        <label for="radioPrimary2" class="control-label">
+                      <div class="icheck-primary d-inline inline">
+                        <input class="checkaboutus" type="checkbox" id="parking" name="chkfacilities" value="parking">
+                        <label for="parking" class="control-label">
                           Parking
                         </label>
                       </div>

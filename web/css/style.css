@@ -1759,3 +1759,12 @@ figure {
   font-size: 14px;
   color: #888;
 }
+
+.inlinepadding {
+  display: inline;
+  padding-right: 15px;
+}
+
+.inline {
+  display: inline;
+}
