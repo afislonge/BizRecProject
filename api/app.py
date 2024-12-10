@@ -11,6 +11,7 @@ import os
 import pyspark
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
+import pandas as pd
 
 app = Flask(__name__)
 CORS(app)
@@ -35,10 +36,14 @@ def index():
 
 @app.route('/settings', methods=['GET'])
 def settings():
-    spark_session = SparkSession.builder.appName("BizRecApi").getOrCreate()
-    df_loc = spark_session.read.csv("data\city.csv", header=True, inferSchema=True) 
-    loc_data = df_loc.rdd.flatMap(lambda x: x).collect()
+    # spark_session = SparkSession.builder.appName("BizRecApi").getOrCreate()    
+    # df_loc = spark_session.read.csv("data\city.csv", header=True, inferSchema=True) 
+    # loc_data = df_loc.rdd.flatMap(lambda x: x).collect()
     # loc_data =  ["Ontario", "Alberta", "Chicago"]
+
+    df_loc = pd.read_csv("data/city.csv", header=0)
+    loc_data = df_loc.values.tolist()
+
     cuz_data = ['American',
  'Burgers',
  'Cafe',

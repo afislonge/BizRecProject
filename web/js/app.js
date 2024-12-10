@@ -1,6 +1,6 @@
 $(function () {
-  // api_url = "http://127.0.0.1:5000/";
-  api_url = "https://bizrecapi.onrender.com";
+  api_url = "http://127.0.0.1:5000/";
+  //api_url = "https://bizrecapi.onrender.com";
   predict_api = api_url + "/predict";
   location_api = api_url + "/location";
   cuizine_api = api_url + "/cuizine";
@@ -23,137 +23,62 @@ $(function () {
 
   $("#result").hide();
 
-  const storedData = getDataFromLocalStorage();
-  const now = new Date().getTime();
-  // Check if stored data is older than 1 hour (adjust as needed)
-  if (!storedData || now - storedData.timestamp > 3600000) {
-    const freshData = await fetchData();
-    if (freshData) {
-      saveDataToLocalStorage({ data: freshData, timestamp: now });
-      updateUI(freshData);
-    } else {
-      // Handle error or no data
-    }
-  } else {
-    updateUI(storedData.data);
-  }
+  fetchData();
 
-  // Function to update the UI with the given data
-function updateUI(data) {
-  loc_data = data.location;
-        cui_data = data.cuizine;
-        var location = document.getElementById("location");
-        var cuzine = document.getElementById("cuzine");
-
-        //remove all options
-        var opt = document.createElement("option");
-        opt.innerHTML = "Select Location";
-        opt.value = "";
-        location.innerHTML = "";
-        location.appendChild(opt);
-        for (var i = 0; i < loc_data.length; i++) {
-          var opt = document.createElement("option");
-          opt.value = loc_data[i];
-          opt.innerHTML = loc_data[i];
-          location.appendChild(opt);
-        }
-
-        var opt = document.createElement("option");
-        opt.innerHTML = "Select Cuizine";
-        cuzine.innerHTML = "";
-        opt.value = "";
-        cuzine.appendChild(opt);
-        for (var i = 0; i < cui_data.length; i++) {
-          var opt = document.createElement("option");
-          opt.value = cui_data[i];
-          opt.innerHTML = cui_data[i];
-          cuzine.appendChild(opt);
-        }
-}
-
-  async function fetchData() {
+  function fetchData() {
     try {
-      const response = await fetch('https://your-api-endpoint');
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      return null;
-    }
-  }
+      //call location api
+      $.ajax({
+        url: settings_url,
+        type: "GET",
+        success: function (response) {
+          // Process the response data
+          console.log(response);
+          loc_data = response.location;
+          cui_data = response.cuizine;
+          var location = document.getElementById("location");
+          var cuzine = document.getElementById("cuzine");
 
-  try {
-    //call location api
-    $.ajax({
-      url: settings_url,
-      type: "GET",
-      success: function (response) {
-        // Process the response data
-        console.log(response);
-        loc_data = response.location;
-        cui_data = response.cuizine;
-        var location = document.getElementById("location");
-        var cuzine = document.getElementById("cuzine");
-
-        //remove all options
-        var opt = document.createElement("option");
-        opt.innerHTML = "Select Location";
-        opt.value = "";
-        location.innerHTML = "";
-        location.appendChild(opt);
-        for (var i = 0; i < loc_data.length; i++) {
+          //remove all options
           var opt = document.createElement("option");
-          opt.value = loc_data[i];
-          opt.innerHTML = loc_data[i];
+          opt.innerHTML = "Select Location";
+          opt.value = "";
+          location.innerHTML = "";
           location.appendChild(opt);
-        }
+          for (var i = 0; i < loc_data.length; i++) {
+            var opt = document.createElement("option");
+            opt.value = loc_data[i];
+            opt.innerHTML = loc_data[i];
+            location.appendChild(opt);
+          }
 
-        var opt = document.createElement("option");
-        opt.innerHTML = "Select Cuizine";
-        cuzine.innerHTML = "";
-        opt.value = "";
-        cuzine.appendChild(opt);
-        for (var i = 0; i < cui_data.length; i++) {
           var opt = document.createElement("option");
-          opt.value = cui_data[i];
-          opt.innerHTML = cui_data[i];
+          opt.innerHTML = "Select Cuizine";
+          cuzine.innerHTML = "";
+          opt.value = "";
           cuzine.appendChild(opt);
-        }
-      },
-      error: function (error) {
-        console.error("Error fetching data:", error);
-        Swal.fire({
-          text: "Error fetching data",
-          icon: "error",
-        });
-      },
-    });
-
-    // $.ajax({
-    //   url: cuizine_api,
-    //   type: "GET",
-    //   success: function (response) {
-    //     // Process the response data
-    //     console.log(response);
-    //     data = response;
-    //     for (var i = 0; i < data.length; i++) {
-    //       var opt = document.createElement("option");
-    //       opt.value = data[i];
-    //       opt.innerHTML = data[i];
-    //       location.appendChild(opt);
-    //     }
-    //   },
-    //   error: function (error) {
-    //     console.error("Error fetching data:", error);
-    //     $("#result").html("Error fetching data");
-    //   },
-    // });
-  } catch (e) {
-    console.log(e);
-    Swal.fire({
-      text: "Error loading the system",
-      icon: "error",
-    });
+          for (var i = 0; i < cui_data.length; i++) {
+            var opt = document.createElement("option");
+            opt.value = cui_data[i];
+            opt.innerHTML = cui_data[i];
+            cuzine.appendChild(opt);
+          }
+        },
+        error: function (error) {
+          console.error("Error fetching data:", error);
+          Swal.fire({
+            text: "Error fetching data",
+            icon: "error",
+          });
+        },
+      });
+    } catch (e) {
+      console.log(e);
+      Swal.fire({
+        text: "Error loading the system",
+        icon: "error",
+      });
+    }
   }
 
   submit.addEventListener("click", function () {
