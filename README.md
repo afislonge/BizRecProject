@@ -1,6 +1,6 @@
-# Success Rate Prediction and Business Recommendation Platform
+# Restaurant  Recommendation Platform
 
-Welcome to the Success Rate Prediction and Business Recommendation Model repository! This project leverages machine learning to help entrepreneurs and SMEs predict business success rates and get personalized recommendations. Using real-world data from Yelp and other sources, the model provides actionable insights into business viability.
+Welcome to the Restaurant Recommendation Model repository! This project leverages machine learning to help people get personalized recommendations to visit restaurants based on thier past Behaviour and prefrences. Using real-world data from Yelp and other sources, the model provides top 5 restaurants to vist .
 
 ---
 
@@ -16,10 +16,7 @@ Welcome to the Success Rate Prediction and Business Recommendation Model reposit
 
 ## Introduction
 
-High failure rates among small and medium-sized enterprises (SMEs) highlight the need for data-driven tools that provide actionable insights into business viability. This project offers a **Machine Learning-based prediction model** that:
-- Predicts the likelihood of business success based on key factors.
-- Provides business recommendations tailored to location, industry, and customer sentiment.
-- Helps entrepreneurs make better market entry decisions and allocate resources effectively.
+In this project, a system that will be recommending restaurants based on users' profiles such as past reviews, location, and the kind of cuisine will be designed and implemented. By this analysis of user behavior and other historical data, personalized recommendations will be provided to enhance the decision-making process and satisfactions of the customers. 
 
 ---
 
