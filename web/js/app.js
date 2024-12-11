@@ -26,6 +26,7 @@ $(function () {
   });
 
   $("#result").hide();
+  $(".home").hide();
 
   fetchData();
 
@@ -160,7 +161,14 @@ $(function () {
             count = data[i].topic_count_list[j];
             topic = data[i].topic_list[j];
             topiclist +=
-              "<li>" + topic + " : " + count + " (" + per + "%)</li>" + "</ul>";
+              "<li>" +
+              topic +
+              " : " +
+              count +
+              " (" +
+              per.toFixed(2) +
+              "%)</li>" +
+              "</ul>";
           }
 
           html +=
@@ -205,7 +213,8 @@ $(function () {
   reset.addEventListener("click", function () {
     //get value of dropdowm control
     $("#result").hide();
-    $(".home").show();
+    $(".home").hide();
+    // $(".home").show();
   });
 
   // Function to save data to local storage

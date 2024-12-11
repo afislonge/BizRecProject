@@ -168,7 +168,7 @@ figure {
 }
 
 .fh5co-cover {
-  background-image: url(/images/banner.jpg);
+  background-image: url(/images/restaurant.png);
 }
 
 .fh5co-cover,
@@ -1805,6 +1805,16 @@ figure {
   text-align: right;
   font-size: 0.9em;
   color: #555;
+}
+
+ul {
+  list-style-type: none; /* Removes the dot */
+  padding: 0; /* Optional: Removes default padding */
+  margin: 0; /* Optional: Removes default margin */
+}
+
+li {
+  margin-bottom: 5px; /* Optional: Adds spacing between list items */
 }
 
 .irs--flat .irs-from,
