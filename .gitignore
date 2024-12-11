@@ -13,7 +13,9 @@ __pycache__/
 *.pbix
 
 # Distribution / packaging
+topic_senti_model
 Recommender_System_Newdata.csv
+restaurant_recommender_Final_model/
 api/*.json
 .vscode/
 .Python

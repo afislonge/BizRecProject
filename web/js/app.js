@@ -1,10 +1,14 @@
 $(function () {
   api_url = "http://127.0.0.1:5000/";
   //api_url = "https://bizrecapi.onrender.com";
-  predict_api = api_url + "/predict";
+  predict_api = api_url + "/recommend";
   location_api = api_url + "/location";
   cuizine_api = api_url + "/cuizine";
   settings_url = api_url + "/settings";
+
+  $(document).ajaxSend(function () {
+    $("#overlay").fadeIn(300);
+  });
 
   $(".select2").select2();
 
@@ -63,6 +67,10 @@ $(function () {
             opt.innerHTML = cui_data[i];
             cuzine.appendChild(opt);
           }
+
+          setTimeout(function () {
+            $("#overlay").fadeOut(300);
+          }, 500);
         },
         error: function (error) {
           console.error("Error fetching data:", error);
@@ -70,6 +78,10 @@ $(function () {
             text: "Error fetching data",
             icon: "error",
           });
+
+          setTimeout(function () {
+            $("#overlay").fadeOut(300);
+          }, 500);
         },
       });
     } catch (e) {
@@ -78,6 +90,10 @@ $(function () {
         text: "Error loading the system",
         icon: "error",
       });
+
+      setTimeout(function () {
+        $("#overlay").fadeOut(300);
+      }, 500);
     }
   }
 
@@ -124,15 +140,53 @@ $(function () {
       cuisine_type: rest_cuzine,
     };
     console.log(data);
+    $("#result").html("");
 
     $.ajax({
       url: predict_api,
       type: "POST",
       contentType: "application/json", // Adjust as needed
-      data: JSON.stringify({ data }),
+      data: JSON.stringify(data),
       success: function (response) {
         // Process the response data
-        console.log(response);
+        console.log(response.data);
+        var data = response.data;
+        var html = "";
+        for (var i = 0; i < data.length; i++) {
+          topiclist = "";
+          topiclist = "";
+          for (var j = 0; j < data[i].topic_list.length; j++) {
+            per = data[i].topic_percentage_list[j];
+            count = data[i].topic_count_list[j];
+            topic = data[i].topic_list[j];
+            topiclist +=
+              "<li>" + topic + " : " + count + " (" + per + "%)</li>" + "</ul>";
+          }
+
+          html +=
+            '<div class="listing-item"><div class="details"><div class="name-rating">' +
+            '<span class="name">' +
+            data[i].bus_name +
+            "</span>" +
+            '<span class="rating">' +
+            data[i].rating +
+            '<span class="stars">★★★★★</span> (' +
+            data[i].total_reviews +
+            " Reviews)</span>" +
+            ' </div><div class="info">Restaurant</div>' +
+            '<div class="amenities">Business Address: ' +
+            data[i].address +
+            "</div> </div>" +
+            '<div class="location">' +
+            topiclist +
+            "</div>" +
+            "</div>";
+        }
+        $("#result").html(html);
+
+        setTimeout(function () {
+          $("#overlay").fadeOut(300);
+        }, 500);
       },
       error: function (error) {
         console.error("Error fetching data:", error);
@@ -140,6 +194,10 @@ $(function () {
           text: "Error fetching data",
           icon: "error",
         });
+
+        setTimeout(function () {
+          $("#overlay").fadeOut(300);
+        }, 500);
       },
     });
   });
